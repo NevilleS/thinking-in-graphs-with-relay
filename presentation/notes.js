@@ -128,10 +128,6 @@ export default {
   mutations: `
     * Example: Relay's MUTATION model encapsulates different operations, similar to action creators<br/>
   `,
-  mutationsMore: `
-    * MUTATIONS need their own talk - automatically refresh data, optimistic updates, etc.<br/>
-    * Once you use Relay a bit, check out Pathgather blog for a detailed overview
-  `,
   subscriptions: `
     * Part of GraphQL standard is concept of subscriptions for server-published mutations<br/>
     * Interesting idea, not available yet in Relay

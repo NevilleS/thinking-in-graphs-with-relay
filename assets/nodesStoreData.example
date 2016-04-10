@@ -1,0 +1,6 @@
+node: {
+  __typename: "User",
+  id: "VXNlcjox",
+  name: "Neville",
+  wins: 7,
+}

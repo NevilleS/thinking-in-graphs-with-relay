@@ -55,6 +55,7 @@ const images = {
   smashgatherGames: require("../assets/smashgather_games.png"),
   smashgatherUsers: require("../assets/smashgather_users.png"),
   smashgatherUser: require("../assets/smashgather_user.png"),
+  smashgatherCharacter: require("../assets/smashgather_character.png"),
   ness: require("../assets/ness.png"),
   dk: require("../assets/dk.png"),
   kirby: require("../assets/kirby.png"),
@@ -64,7 +65,6 @@ const images = {
   relaySmall: require("../assets/relay.png"),
   relayGraphql: require("../assets/relay_graphql.png"),
   graphql: require("../assets/graphql.png"),
-  beginnersGuide: require("../assets/beginners_guide.png"),
   twitter: require("../assets/twitter.png"),
   github: require("../assets/github.png"),
   reactiflux: require("../assets/reactiflux.png"),
@@ -346,8 +346,8 @@ export default class Presentation extends React.Component {
             <Heading size={ 2 } textColor="white" fit caps>Nodes store data</Heading>
             <CodePane
               textSize="24"
-              lang="js"
-              source={ require("raw!../assets/character.example") }
+              lang="jsx"
+              source={ require("raw!../assets/nodesStoreData.example") }
               margin="20px auto"
             />
           </Slide>
@@ -355,33 +355,41 @@ export default class Presentation extends React.Component {
             <Heading size={ 2 } textColor="white" fit caps>Nodes link to each other</Heading>
             <CodePane
               textSize="24"
-              lang="js"
-              source={ require("raw!../assets/user.example") }
+              lang="jsx"
+              source={ require("raw!../assets/nodesLinkOthers.example") }
               margin="20px auto"
             />
           </Slide>
           <Slide transition={ ["slide"] } notes={ notes.nodesHaveIDs }>
             <Heading size={ 2 } textColor="white" fit caps>Nodes have global IDs</Heading>
             <Heading size={ 2 } textColor="white" fit caps>and can be fetched directly</Heading>
-            <CodePane
-              textSize="24"
-              lang="js"
-              source={ require("raw!../assets/game.example") }
-              margin="20px auto"
-            />
+            <div style={ flexRow}>
+              <CodePane
+                textSize="24"
+                lang="jsx"
+                source={ require("raw!../assets/nodesHaveIDs_request.example") }
+                style={{ minWidth: "53%" }}
+              />
+              <CodePane
+                textSize="24"
+                lang="jsx"
+                source={ require("raw!../assets/nodesHaveIDs_response.example") }
+                style={{ minWidth: "47%" }}
+              />
+            </div>
           </Slide>
           <Slide transition={ ["slide"] } notes={ notes.nodesNeverChange }>
             <Heading size={ 2 } textColor="white" fit caps>Nodes never change</Heading>
             <div style={ flexRow}>
               <CodePane
                 textSize="24"
-                lang="js"
-                source={ require("raw!../assets/user.example") }
+                lang="jsx"
+                source={ require("raw!../assets/nodesLinkOthers.example") }
                 style={{ minWidth: "50%" }}
               />
               <CodePane
                 textSize="24"
-                lang="js"
+                lang="jsx"
                 source={ require("raw!../assets/character_unchanged.example") }
                 style={{ minWidth: "50%" }}
               />
@@ -417,24 +425,28 @@ export default class Presentation extends React.Component {
             </div>
           </Slide>
           <Slide transition={ ["slide"] } bgColor="white" notes={ notes.declarativeContainersOne }>
-            // TODO: Character image
             <Heading size={ 2 } textColor="primary" fit caps>Declarative Containers</Heading>
-            <CodePane
-              textSize="24"
-              lang="js"
-              source={ require("raw!../assets/declarative.example") }
-              margin="20px auto"
-            />
+            <div style={{ position: "relative" }}>
+              <CodePane
+                textSize="24"
+                lang="jsx"
+                source={ require("raw!../assets/declarative.example") }
+                margin="20px auto"
+              />
+              <Image src={ images.smashgatherCharacter } height="240px" style={{ position: "absolute", right: "20px", bottom: "20px", borderRadius: "10px" }} />
+            </div>
           </Slide>
           <Slide transition={ ["slide"] } bgColor="white" notes={ notes.declarativeContainersTwo }>
-            // TODO: Character image
             <Heading size={ 2 } textColor="primary" fit caps>Declarative Containers</Heading>
-            <CodePane
-              textSize="24"
-              lang="jsx"
-              source={ require("raw!../assets/declarative_2.example") }
-              margin="20px auto"
-            />
+            <div style={{ position: "relative" }}>
+              <CodePane
+                textSize="24"
+                lang="jsx"
+                source={ require("raw!../assets/declarative_2.example") }
+                margin="20px auto"
+              />
+              <Image src={ images.smashgatherCharacter } height="240px" style={{ position: "absolute", right: "20px", bottom: "20px", borderRadius: "10px" }} />
+            </div>
           </Slide>
           <Slide transition={ ["slide"] } bgColor="white" notes={ notes.composableContainers }>
             <Heading size={ 2 } textColor="primary" fit caps>Composable Containers</Heading>
@@ -445,11 +457,10 @@ export default class Presentation extends React.Component {
                 source={ require("raw!../assets/composable.example") }
                 margin="20px auto"
               />
-              <Image src={ images.smashgatherUser } height="240px" style={{ position: "absolute", right: "20px", top: "20px", borderRadius: "5px" }} />
+              <Image src={ images.smashgatherUser } height="240px" style={{ position: "absolute", right: "20px", top: "20px", borderRadius: "10px" }} />
             </div>
           </Slide>
           <Slide transition={ ["slide"] } bgColor="white" notes={ notes.nodeBasedCache }>
-            // TODO: Cache image
             <Heading size={ 2 } textColor="primary" caps>Node-Based Cache</Heading>
             <div style={ Object.assign({}, flexRow, { marginTop: "20px", background: "#2d2d2d" }) }>
               <CodePane
@@ -562,11 +573,6 @@ export default class Presentation extends React.Component {
               margin="0 auto"
             />
           </Slide>
-          <Slide transition={ ["fade"] } bgColor="primary" notes={ notes.mutationsMore }>
-            <Heading size={ 2 } textColor="white" fit caps>More on mutations</Heading>
-            <Heading size={ 2 } textColor="white" fit caps>Optimal refetching, optimistic updates, etc.</Heading>
-            <Image style={{ maxWidth: "100%", borderRadius: "5px" }} src={ images.beginnersGuide } />
-          </Slide>
           <Slide transition={ ["slide"] } bgColor="white" notes={ notes.subscriptions }>
             <Heading size={ 2 } textColor="primary" fit caps>Subscriptions</Heading>
             <CodePane
@@ -577,9 +583,9 @@ export default class Presentation extends React.Component {
               style={{ textAlign: "center" }}
             />
           </Slide>
-          <Slide transition={ ["slide"] } bgImage={ images.relayWhite } bgColor="white" notes={ notes.summary }>
-            <Heading size={ 1 } textColor="black" caps>Thinking In Graphs With Relay</Heading>
-            <List textColor="black">
+          <Slide transition={ ["fade"] } bgImage={ images.relayWhite } bgColor="primary" notes={ notes.summary }>
+            <Heading size={ 1 } textColor="white" caps>Thinking In Graphs With Relay</Heading>
+            <List textColor="white">
               <Appear><ListItem textSize="50">model data with nodes, not rows</ListItem></Appear>
               <Appear><ListItem textSize="50">work within the rules</ListItem></Appear>
               <Appear><ListItem textSize="50">write components to render nodes</ListItem></Appear>
@@ -595,7 +601,7 @@ export default class Presentation extends React.Component {
               </div>
               <div style={ summaryItem }>
                 <Image style={ summaryImage } src={ images.twitter } />
-                <Text>@NevilleS</Text>
+                <Text>@nsamuell</Text>
               </div>
               <div style={ summaryItem }>
                 <Image style={ summaryImage } src={ images.reactiflux } />
@@ -604,6 +610,10 @@ export default class Presentation extends React.Component {
               <div style={ summaryItem }>
                 <Image style={ summaryImage } src={ images.github } />
                 <Text>github.com/NevilleS/thinking-in-graphs-with-relay</Text>
+              </div>
+              <div style={ summaryItem }>
+                <Image style={ summaryImage } src={ images.github } />
+                <Text>github.com/Pathgather/smashgather</Text>
               </div>
             </div>
           </Slide>

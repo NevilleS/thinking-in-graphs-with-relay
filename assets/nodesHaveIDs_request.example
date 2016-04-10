@@ -1,0 +1,9 @@
+// GraphQL "node" query
+node(id: "Q2hhcmFjdGVyOjY=") {
+  __typename
+  id
+  ... on Character {
+    name
+    wins
+  }
+}
