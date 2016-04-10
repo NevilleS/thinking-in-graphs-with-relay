@@ -1,0 +1,12 @@
+node: {
+  __typename: "User",
+  id: "VXNlcjox",
+  name: "Neville",
+  wins: 7,
+  character: {
+    __typename: "Character",
+    id: "Q2hhcmFjdGVyOjY=",
+    name: "Ness",
+    wins: 7
+  }
+}

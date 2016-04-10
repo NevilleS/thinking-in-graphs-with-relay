@@ -1,0 +1,10 @@
+node: {
+  __typename: "Game",
+  id: "R2FtZTozNg==",
+  character: {
+    id: "Q2hhcmFjdGVyOjY="
+  },
+  user: {
+    id: "VXNlcjox"
+  }
+}

@@ -1,0 +1,7 @@
+onItemClicked(id) {
+  let update = new UpdateGameMutation(
+    id,
+    ref.value
+  )
+  Relay.Store.commitUpdate(update)
+}

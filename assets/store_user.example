@@ -1,0 +1,18 @@
+// server response
+data: {
+  node: {
+    __typename: "User",
+    id: "VXNlcjox", // key
+    name: "Neville",
+    wins: 7,
+    character: {
+      __typename: "Character",
+      id: "Q2hhcmFjdGVyOjY=", // key
+      name: "Ness",
+      wins: 7
+    }
+  }
+}
+
+
+

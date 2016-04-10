@@ -1,0 +1,12 @@
+
+
+// identical data when
+// fetched directly
+// or via linked field
+node: {
+  __typename: "Character",
+  id: "Q2hhcmFjdGVyOjY=",
+  name: "Ness",
+  wins: 7
+}
+

@@ -1,0 +1,10 @@
+node(id: "QVXNlcjox") {
+  ...on User {
+    name
+    wins
+    character {
+      name
+      wins
+    }
+  }
+}

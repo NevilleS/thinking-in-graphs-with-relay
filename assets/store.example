@@ -1,0 +1,18 @@
+// Relay.Store._storeData._records
+{
+  "VXNlcjox": {
+    __typename: "User",
+    id: "VXNlcjox",
+    name: "Neville",
+    wins: 7,
+    character: {
+      __dataID__: "Q2hhcmFjdGVyOjY=",
+    }
+  },
+  "Q2hhcmFjdGVyOjY=": {
+    __typename: "Character",
+    id: "Q2hhcmFjdGVyOjY=",
+    name: "Ness",
+    wins: 7
+  }
+}

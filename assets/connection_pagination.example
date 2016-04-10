@@ -1,0 +1,16 @@
+Relay.createContainer(GameScreenComponent, {
+  fragments: {
+    viewer: () => Relay.QL`
+      fragment on Viewer {
+        games(first: $count) {
+          edges {
+            node {
+              id
+              ${Game.getFragment(game)}
+            }
+          }
+        }
+      }
+    `,
+  },
+});

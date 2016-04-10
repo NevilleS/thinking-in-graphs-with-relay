@@ -1,0 +1,10 @@
+Relay.createContainer(CharacterComponent, {
+  fragments: {
+    character: () => Relay.QL`
+      fragment on Character {
+        name
+        wins
+      }
+    `,
+  },
+})

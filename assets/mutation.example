@@ -1,0 +1,9 @@
+// ...in response to a mutation
+{
+  character: {
+    __typename: "Character",
+    id: "Q2hhcmFjdGVyOjY=",
+    name: "Ness",
+    wins: 8 // changed from 7 -> 8!
+  }
+}

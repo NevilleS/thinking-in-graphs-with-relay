@@ -1,0 +1,12 @@
+class CharacterComponent extends Component {
+  render() {
+    let { name, wins } = this.props.character
+    return <div className="character"
+      style={{
+        background: `url("img/${name}.png")`,
+        backgroundSize: "cover"
+      }}>
+      <div className="stats">{ wins }</div>
+    </div>
+  }
+}
