@@ -1,3 +1,4 @@
+// Input GraphQL query
 node(id: "QVXNlcjox") {
   ...on User {
     name

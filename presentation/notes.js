@@ -1,144 +1,194 @@
 export default {
   title: `
-    * Today we're going to talk about the Relay framework<br/>
-    * See past the hype surrounding it and think about the problems it solves
+    * Today we're going to talk about Relay.<br/>
+    * Who's heard of Relay? All the hype at React Conf 2015 & 2016...<br/>
+    * We're using it, so I want to look past the hype and talk about the problems it solves.<br/>
+    * First, we need to talk about some examples of apps that don't use Relay.<br/>
+  `,
+  speaker: `
+    * No one wants to talk about a theoretical ToDo app.<br/>
+    * Let's talk about a theoretical app that lists recent speakers at tech events.<br/>
   `,
   speakerList: `
-    * Imagine an app that lists recent speakers at tech events in NYC
+    * Tonight, we've got a great lineup: me, Cory, and Miriam<br/>
   `,
   speakerDetail: `
-    * For each speaker, details view with work history & speaking history
+    * For each speaker, probably see a details view.<br/>
+    * Here, you'd see that I'm working on social learning platform at Pathgather.<br/>
+    * Also show that this is my first tech talk but I organize a local HackerNest meetup.<br/>
+    * We can all imagine how to deconstruct these views into React components.<br/>
+    * What does the data model look like?<br/>
   `,
   speakerData: `
-    * Data organized in tables: USERS, COMPANIES, EVENTS<br/>
-    * Stitch together the rows based on their relationships and render
+    * Like most apps, this would be organized into database tables.<br/>
+    * We'd have one table for each type of data: USERS, COMPANIES, and EVENTS.<br/>
+    * To render a given view, we'd stitch together rows into models.<br/>
+    * Nothing fancy, but it'd pay the bills, and gives me an opportunity to talk about myself.<br/>
+    * Now, let's talk about a *real* app.<br/>
+  `,
+  smashgather: `
+    * Smashgather is an app I built during my open-source time at Pathgather.<br/>
+    * Automatically records our weekly Smash games at the office.<br/>
   `,
   smashgatherList: `
-    * This app lists recent games played at our office, and who won each
+    * Much like speaker app, Smashgather has recent games view, which shows who won each with what character.<br/>
   `,
   smashgatherDetail: `
-    * View each user's character & win count, arranged in leaderboard
+    * Smashgather also has a user view that shows the win count for each user, arranged in a leaderboard.<br/>
   `,
   smashgatherData: `
-    * Similarly, data organized in tables: USERS, CHARACTERS, GAMES<br/>
-    * Stitch together the rows based on their relationships and render
+    * Smashgather's data is stored in a database, with tables for USERS, CHARACTERS, and GAMES.<br/>
+    * To render a view like the recent games, we need to stitch together rows to build models for rendering.<br/>
+    * Two different apps, but very similar data models. Neither of which are very convenient for the front-end.<br/>
   `,
   table: `
-    * What's the point? Tables good for storage, bad for UIs<br/>
-    * Web apps don't want rows; they want the combined data for rendering
+    * The problem here is that tables are good for storage, but they don't match the products we make.<br/>
+    * Web apps don't care about rows, they want to combine different pieces of data together into a view.<br/>
   `,
   newSmashgatherData: `
-    * Consider a different model where all data is stored freely<br/>
-    * Instead of rows, data is stored on nodes<br/>
-    * Still need to combine data for rendering, but resembles how apps are designed
+    * Let's talk about the model that the Smashgather client actually uses.<br/>
+    * Instead of tables of users, characters, and games, all data is accessed freely.<br/>
+    * From a given GAME, fetch the connected USER and CHARACTER for rendering together.<br/>
+    * Still need to combine data, but it more closely mimics how apps are designed.<br/>
   `,
   introRelay: `
-    * This is the type of data model Relay understands
+    * As you have probably guessed, Smashgather is using Relay.<br/>
   `,
   aside: `
-    * Not going into detail, but lots of setup required to use Relay<br/>
-    * Relay frontend, GraphQL backend, and Relay in the middle<br/>
-    * Most underestimate the requirements Relay places on your schema; very opinionated about data model!
+    * Before we go further, need to set some expectations.<br/>
+    * Relay is a framework for getting data from GraphQL server to your React components.<br/>
+    * GraphQL itself is just a query language, so you'll need some kind of database.<br/>
+    * Most people think Relay is a generic framework, but it's not.<br/>
+    * It is very opinionated and places specific restrictions on your schema.<br/>
   `,
   backToRelay: `
-    * OK, back to the Relay data model
+    * Let's get back to it.<br/>
   `,
   relayAssumes: `
-    * Unlike other libraries like Redux, Relay makes a lot of assumptions about how your data behaves<br/>
-    * It doesn't have models with has-and-belongs-to-many and joins... it assumes your data is a graph
+    * Unlike generic libraries like Redux, Relay makes a lot of assumptions about how your data behaves.<br/>
+    * It doesn't have a "model layer" with "has many" or "belong to many" type associations.<br/>
+    * Fundamentally assumes that your data is a graph.<br/>
+  `,
+  oneOfThese: `
+    * I don't mean a line graph - a connected graph.<br/>
   `,
   introNodes: `
-    * A graph is defined as a bunch of connected NODES<br/>
-    * Relay defines a very simple NODE interface that you use<br/>
-    * Relay assumes (but can't enforce) your NODES behave in particular ways, let's see
+    * Basic definition of a graph is a bunch of connected nodes.<br/>
+    * Relay defines a "node" interface that you use in your GraphQL schema.<br/>
+    * It then makes a bunch of assumptions about your nodes.<br/>
   `,
   nodesStoreData: `
-    * Nodes are the building blocks that can store whatever data you need<br/>
-    * For example, a Character node has a name, win count, etc.
+    * First, it assumes you use nodes to store pretty much all your data.<br/>
+    * Character? Game? User? Node, node, node.<br/>
+    * Win count, however, is a number, so that is a regular field.<br/>
+    * This is an example GraphQL response that shows a Smashgather User node.<br/>
+    * You use nodes as the building blocks for all your views.<br/>
   `,
   nodesLinkOthers: `
-    * Nodes can include other nodes to build more complex models<br/>
-    * This is normal GraphQL, except these sub-fields implement Relay's NODE interface
+    * Standalone rows aren't very convenient - standalone nodes aren't that much better.<br/>
+    * Relay assumes your nodes will include other nodes, to build more complex models.<br/>
+    * This is a more complex example User response, includes a character node as a sub-field.<br/>
+    * This is regular GraphQL, except these sub-fields implement node interface.<br/>
   `,
   nodesHaveIDs: `
-    * Importantly all NODES have a unique ID that identifies them<br/>
-    * Relay requires a top-level NODE QUERY to fetch any node by ID
+    * Importantly, node interface requires that nodes have a unique ID.<br/>
+    * Isn't a type-specific row ID - a GUID.<br/>
+    * Relay requires that your schema defines a "node" query to fetch individual nodes by ID.<br/>
+    * This example shows node query and the resulting Character node.<br/>
   `,
   nodesNeverChange: `
-    * Finally, Relay assumes that NODE data never changes<br/>
-    * The character linked on this user needs to be the same even when fetched directly<br/>
-    * Might seem obvious, but it's tempting to include query-specific data
+    * Finally, Relay assumes your node data never changes.<br/>
+    * Once you fetch a character node once, don't need to fetch it again.<br/>
+    * This means you get same data when you fetch a node directly or via a linked field.<br/>
+    * Might seem obvious, but it's tempting to include query-specific data.<br/>
+    * But Relay won't like that... because nodes never change!<br/>
+  `,
+  unlessTheyDo: `
+    * Obviously, completely unchanging data is ridiculous<br/>
+    * Relay has a very detailed mutation model, and allows explicit refetching.<br/>
+    * Otherwise, nodes never change.<br/>
   `,
   nodesSummary: `
-    * NODES are the building blocks and foundation of Relay<br/>
-    * Store data, connect to each other, use global IDs for fetching, and never change
+    * These are the basic assumptions that Relay makes about your app.<br/>
+    * Nodes are your building blocks to store data and link data together<br/>
+    * Give each one a global ID for fetching and identification<br/>
+    * None of it ever changes.<br/>
   `,
   theRules: `
-    * Play by those rules, or...<br/>
-    * Cryptic errors, square-peg-round-hole situations, etc.
+    * When you use Relay, you play by those rules.<br/>
+    * Otherwise, you'll get frustrated!<br/>
   `,
   relayPatterns: `
-    * Once your data behaves in this way, Relay can work it's magic<br/>
-    * Let's look at the patterns implemented by Relay one by one
+    * Based on that node model, Relay implements patterns.<br/>
+    * Let's look at what Relay gives to make building apps on top of that model pretty magical.<br/>
   `,
   declarativeContainersOne: `
-    * Wraps components in Relay containers, similar to Redux<br/>
-    * Container declares fragments, like this component wants NAME and WINS from a given CHARACTER NODE<br/>
-    * When container renders, Relay does work to send the query and get the response
+    * Like Redux, Relay wraps components in containers that manage the data fetching.<br/>
+    * On container, declare data requirements via GraphQL fragments.<br/>
+    * For example: Character container declares "name" and "wins" fields.<br/>
+    * When container mounts, Relay sends request, receives response, and renders the inner component.<br/>
+  `,
+  bonusValidation: `
+    * As a bonus, Relay.QL tag performs query validation as a build step<br/>
+    * Gives a loose guarantee that you don't have any typos or invalid fields in your fragments.<br/>
   `,
   declarativeContainersTwo: `
-    * Once data is fetched, inner component is rendered<br/>
-    * Relay places the data as a simple Javascript object on the component props<br/>
-    * Bonus: when transforming tagged RelayQL templates, Relay VALIDATES the queries
+    * Once Relay gets the data, it gives exactly the data to the inner component as props.<br/>
   `,
   composableContainers: `
-    * Just like React components compose, Relay containers compose in parallel<br/>
-    * Parent container includes fragment from it's children<br/>
-    * Via composition, all data for a complex view fetched via a single query
+    * Like how React components compose, Relay containers compose in parallel.<br/>
+    * Parent container includes child container's fragment in it's own.<br/>
+    * This composition rolls up to a top-level container.<br/>
+    * Means you fetch exactly the data you need for all the components in a single query.<br/>
   `,
   nodeBasedCache: `
-    * Traditionally, cache data based on the request URL - one record per page<br/>
-    * Relay UNDERSTANDS the structure, breaks down responses and stores one record per NODE<br/>
-    * When NODES are reused elsewhere, can be served from cache even if query wildly different
+    * Relay optimizes all fetching via a detailed cache.<br/>
+    * Traditionally caches are based on request URL - one record per page.<br/>
+    * However, Relay understands GraphQL responses, so it stores one record per node.<br/>
+    * Containers subscribe to node records, and render whenever updated.<br/>
+    * Works is because of Relay's node model with global IDs which act as keys.<br/>
   `,
   localGraphOne: `
-    * In fact, calling it a CACHE is misleading - implies "dumb"<br/>
-    * More accurate: a LOCAL GRAPH
+    * Calling the Relay store a "cache" is misleading, since it's not dumb!<br/>
+    * Refer to it as a "local graph".<br/>
   `,
   localGraphTwo: `
-    * Don't think of Relay as a way to fetch GraphQL data from server and cache it<br/>
-    * Instead, think of it as a local GraphQL server that communicates with remote graph to fill in blanks
+    * Not simply a way to fetch GraphQL data from a remote server.<br/>
+    * A local GraphQL server that stores data in memory, talks to remote graph to fill in the blanks.<br/>
   `,
   queryDiffing: `
-    * Relay records data on NODES and GraphQL allows selective fetching, often only need portion of NODE<br/>
-    * Example: might already have the user name, and the character name and wins, just need user wins<br/>
-    * Relay diffs the query you declare (all fields) vs data in store, only fetches missing fields
+    * Since Relay parses GraphQL queries, it can add optimizations like query diffing.<br/>
+    * For example, a User might request these fields.<br/>
+    * Relay compares against the data it currently has in the store, creates a new query that is sent.<br/>
+    * Often, it can perform the query completely locally, or at least very minimal.<br/>
+    * Predicated on the assumption that nodes never change.<br/>
   `,
   nodeSummary: `
-    * We've covered how Relay's NODE model enables lots of magic<br/>
-    * declarative containers, composable containers, a node based cache, and query diffing
+    * So far, I've shown how Relay's node model enables a lot of things.<br/>
+    * Declare data fragments for components next to where you use them.<br/>
+    * Combine fragments together to perform efficient data fetching.<br/>
+    * Relay store implements cache with optimizations like query diffing to ensure you only fetch the data you need.<br/>
   `,
   theBeginning: `
-    * NODES are just the beginning, also implements patterns for other common scenarios<br/>
-    * CONNECTIONS for lists of NODES, MUTATIONS to modify the graph, SUBSCRIPTIONS for real-time data
+    * Just the beginning!<br/>
+    * Relay also implements patterns for other common scenarios.<br/>
+    * Connections for lists of nodes, mutations to encapsulate actions.<br/>
+    * Don't have time to cover these, except for a brief teaser.<br/>
   `,
   connections: `
-    * Example: Relay's CONNECTION model allows updating a single variable (count) to page through data
+    * Relay's connection model allows efficient paginated lists of nodes.<br/>
+    * Simply incrementing a count variable, Relay forms the minimal query to get remaining items.<br/>
   `,
   mutations: `
-    * Example: Relay's MUTATION model encapsulates different operations, similar to action creators<br/>
-  `,
-  subscriptions: `
-    * Part of GraphQL standard is concept of subscriptions for server-published mutations<br/>
-    * Interesting idea, not available yet in Relay
+    * Mutations encapsulate all the behaviour of an operation into an object you dispatch.<br/>
+    * Relay handles forming query to refetch changed data and updating views.<br/>
+    * Lots of optimizations here like cancelation and optimistic updates.<br/>
   `,
   summary: `
-    * Think about data differently in terms of connected nodes<br/>
-    * Understand Relay's assumptions and work with it, not against<br/>
-    * Encapsulate data requirements in your components, then compose those queries into views
-  `,
-  thanks: `
-    * Questions? Find me on email, twitter, or Reactiflux chat room<br/>
-    * Slides on Github
+    * To use Relay effectively, you need to think about things differently.<br/>
+    * Model your data as nodes, not rows.<br/>
+    * Understand Relay's assumptions and work with them, not against them.<br/>
+    * Allows components that declaratively render data and compose into full views.<br/>
+    * Relay handles the rest.<br/>
   `,
 }

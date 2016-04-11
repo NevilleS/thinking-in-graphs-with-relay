@@ -236,7 +236,7 @@ export default class Presentation extends React.Component {
               <Image src={ images.pathgatherWhite } height="1.4em" margin="0 0 -0.5em 0.2em" />
             </Heading>
           </Slide>
-          <Slide transition={ ["slide"] } bgColor="white">
+          <Slide transition={ ["slide"] } bgColor="white" notes={ notes.speaker }>
             <Heading size={ 1 } fit caps textColor="primary">
               Let's Talk About A Speaker App
             </Heading>
@@ -285,7 +285,7 @@ export default class Presentation extends React.Component {
             <Heading size={ 2 } textColor="primary" fit caps>Speaker App Data Model</Heading>
             <SpeakerDataModel />
           </Slide>
-          <Slide transition={ ["slide"] } bgImage={ images.smashgatherIntro } bgDarken={0.5}>
+          <Slide transition={ ["slide"] } bgImage={ images.smashgatherIntro } bgDarken={0.5} notes={ notes.smashgather }>
             <Heading size={ 1 } fit caps textColor="white">
               Let's Talk About A SSB64 App
             </Heading>
@@ -336,7 +336,7 @@ export default class Presentation extends React.Component {
             <Heading size={ 2 } textColor="white" fit caps>Relay assumes</Heading>
             <Heading size={ 2 } textColor="white" fit caps>your data is a graph</Heading>
           </Slide>
-          <Slide transition={ ["fade"] } bgImage={ images.graph } bgDarken="0.5">
+          <Slide transition={ ["fade"] } bgImage={ images.graph } bgDarken="0.5" notes={ notes.oneOfThese }>
             <Heading size={ 2 } textColor="white">(one of these)</Heading>
           </Slide>
           <Slide transition={ ["slide"] } notes={ notes.introNodes }>
@@ -395,6 +395,10 @@ export default class Presentation extends React.Component {
               />
             </div>
           </Slide>
+          <Slide transition={ ["slide"] } notes={ notes.unlessTheyDo }>
+            <Heading size={ 2 } textColor="white" fit caps>...unless they do</Heading>
+            <Heading size={ 2 } textColor="white" fit caps>(via an explict mutation or query)</Heading>
+          </Slide>
           <Slide transition={ ["fade"] } bgColor="primary" bgImage={ images.relayWhite } notes={ notes.nodesSummary }>
             <Heading size={ 2 } textColor="white" fit caps>Relay assumes that your nodes:</Heading>
             <List textColor="white">
@@ -436,6 +440,15 @@ export default class Presentation extends React.Component {
               <Image src={ images.smashgatherCharacter } height="240px" style={{ position: "absolute", right: "20px", bottom: "20px", borderRadius: "10px" }} />
             </div>
           </Slide>
+          <Slide transition={ ["fade"] } bgColor="primary" notes={ notes.bonusValidation }>
+            <Heading size={ 2 } textColor="white" fit caps>Bonus: Query Validation!</Heading>
+            <CodePane
+              textSize="20"
+              lang="text"
+              source={ require("raw!../assets/validation.example") }
+              margin="20px auto"
+            />
+          </Slide>
           <Slide transition={ ["slide"] } bgColor="white" notes={ notes.declarativeContainersTwo }>
             <Heading size={ 2 } textColor="primary" fit caps>Declarative Containers</Heading>
             <div style={{ position: "relative" }}>
@@ -464,7 +477,7 @@ export default class Presentation extends React.Component {
             <Heading size={ 2 } textColor="primary" caps>Node-Based Cache</Heading>
             <div style={ Object.assign({}, flexRow, { marginTop: "20px", background: "#2d2d2d" }) }>
               <CodePane
-                textSize="20"
+                textSize="18"
                 lang="jsx"
                 source={ require("raw!../assets/store_user.example") }
                 margin="0 auto"
@@ -472,7 +485,7 @@ export default class Presentation extends React.Component {
               />
               <Appear style={{ minWidth: "50%" }}>
                 <CodePane
-                  textSize="20"
+                  textSize="18"
                   lang="jsx"
                   source={ require("raw!../assets/store.example") }
                   margin="0 auto"
@@ -553,7 +566,7 @@ export default class Presentation extends React.Component {
           </Slide>
           <Slide transition={ ["fade"] } bgColor="primary" notes={ notes.theBeginning }>
             <Heading size={ 2 } textColor="white" fit caps>Nodes are just the beginning</Heading>
-            <Heading size={ 2 } textColor="white" fit caps>Nodes + Connections + Mutations + Subscriptions</Heading>
+            <Heading size={ 2 } textColor="white" fit caps>Nodes + Connections + Mutations</Heading>
           </Slide>
           <Slide transition={ ["slide"] } bgColor="white" notes={ notes.connections }>
             <Heading size={ 2 } textColor="primary" fit caps>Paginated Connections</Heading>
@@ -573,16 +586,6 @@ export default class Presentation extends React.Component {
               margin="0 auto"
             />
           </Slide>
-          <Slide transition={ ["slide"] } bgColor="white" notes={ notes.subscriptions }>
-            <Heading size={ 2 } textColor="primary" fit caps>Subscriptions</Heading>
-            <CodePane
-              textSize="60"
-              lang="jsx"
-              source={ "?" }
-              margin="0 auto"
-              style={{ textAlign: "center" }}
-            />
-          </Slide>
           <Slide transition={ ["fade"] } bgImage={ images.relayWhite } bgColor="primary" notes={ notes.summary }>
             <Heading size={ 1 } textColor="white" caps>Thinking In Graphs With Relay</Heading>
             <List textColor="white">
@@ -592,7 +595,7 @@ export default class Presentation extends React.Component {
               <Appear><ListItem textSize="50">compose nodes into full views</ListItem></Appear>
             </List>
           </Slide>
-          <Slide transition={ ["fade"] } bgImage={ images.relayWhite } bgColor="primary" notes={ notes.thanks }>
+          <Slide transition={ ["fade"] } bgImage={ images.relayWhite } bgColor="primary">
             <Heading size={ 1 } textColor="white" caps>Thanks!</Heading>
             <div style={ summaryInfo }>
               <div style={ summaryItem }>

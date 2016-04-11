@@ -1,8 +1,9 @@
 
-
 // identical data when
 // fetched directly
 // or via linked field
+
+// GraphQL response
 node: {
   __typename: "Character",
   id: "Q2hhcmFjdGVyOjY=",

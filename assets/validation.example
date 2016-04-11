@@ -1,0 +1,8 @@
+-- GraphQL Validation Error -- Character --
+
+File:  /Users/neville/git/smashgather/server/js/components/Character.js
+Error: Cannot query field "wind" on type "Character".
+Source:
+>
+> fragment Character_CharacterRelayQL on Character { name, wind }
+>                                                          ^^^

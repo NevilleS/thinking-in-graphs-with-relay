@@ -9,6 +9,7 @@ echo "Switch to gh-pages branch..."
 git checkout gh-pages
 echo "Stage update commit..."
 cp tmp/index.html index.html
+rm -rf dist/
 cp -R tmp/dist/ dist/
 git add index.html
 git add dist/

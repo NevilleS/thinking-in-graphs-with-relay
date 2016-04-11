@@ -1,3 +1,4 @@
+// GraphQL response
 node: {
   __typename: "User",
   id: "VXNlcjox",
