@@ -1,7 +1,7 @@
 export default {
   title: `
     * Today we're going to talk about Relay.<br/>
-    * Who's heard of Relay? All the hype at React Conf 2015 & 2016...<br/>
+    * By now you've all heard of it, all the hype at React Conf 2015 & 2016...<br/>
     * We're using it, so I want to look past the hype and talk about the problems it solves.<br/>
     * First, we need to talk about some examples of apps that don't use Relay.<br/>
   `,
@@ -23,8 +23,15 @@ export default {
     * Like most apps, this would be organized into database tables.<br/>
     * We'd have one table for each type of data: USERS, COMPANIES, and EVENTS.<br/>
     * To render a given view, we'd stitch together rows into models.<br/>
-    * Nothing fancy, but it'd pay the bills, and gives me an opportunity to talk about myself.<br/>
-    * Now, let's talk about a *real* app.<br/>
+    * Even though this is an imaginary app, we know exposing this model is crazy<br/>
+  `,
+  speakerRest: `
+    * Unless you want the network tab to look like this
+  `,
+  speakerActualData: `
+    * Realistically, we'd do all the joining on the backend, and provide a model like this.<br/>
+    * Nothing fancy, but it'd pay the bills.<br/>
+    * Now let's talk about a real app.<br/>
   `,
   smashgather: `
     * Smashgather is an app I built during my open-source time at Pathgather.<br/>
@@ -127,10 +134,6 @@ export default {
     * On container, declare data requirements via GraphQL fragments.<br/>
     * For example: Character container declares "name" and "wins" fields.<br/>
     * When container mounts, Relay sends request, receives response, and renders the inner component.<br/>
-  `,
-  bonusValidation: `
-    * As a bonus, Relay.QL tag performs query validation as a build step<br/>
-    * Gives a loose guarantee that you don't have any typos or invalid fields in your fragments.<br/>
   `,
   declarativeContainersTwo: `
     * Once Relay gets the data, it gives exactly the data to the inner component as props.<br/>

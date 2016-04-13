@@ -50,7 +50,6 @@ const images = {
   bridgit: require("../assets/bridgit.png"),
   avvasi: require("../assets/avvasi.png"),
   manhattanJS: require("../assets/manhattanjs.png"),
-  hackernest: require("../assets/hackernest.png"),
   smashgatherIntro: require("../assets/smashgather_intro.gif"),
   smashgatherGames: require("../assets/smashgather_games.png"),
   smashgatherUsers: require("../assets/smashgather_users.png"),
@@ -135,8 +134,15 @@ const flexRowWrap = Object.assign({}, flexRow, {
   justifyContent: "center",
 })
 
-const dataTable = {
-  margin: "1em",
+const speakerCombined = {
+  width: "100%",
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+  alignItems: "center",
+  margin: "0.5em",
+  borderRadius: "5px",
+  boxShadow: "5px 5px 10px 5px rgba(0, 0, 0, 0.2)",
 }
 
 const point = {
@@ -199,7 +205,11 @@ const companies = [
 ]
 const events = [
   { id: "0", name: "ManhattanJS", image: images.manhattanJS, first: "0", second: "1", third: "2" },
-  { id: "1", name: "HackerNest NYC", image: images.hackernest, first: "0", second: "", third: "" },
+]
+const speakersCombined = [
+  { id: "0", speaker: speakers[0], companies: companies.slice(0, 3), events: events.slice(0, 1) },
+  { id: "1", speaker: speakers[1], companies: companies.slice(3, 4), events: events.slice(0, 1) },
+  { id: "2", speaker: speakers[2], companies: companies.slice(4, 5), events: events.slice(0, 1) },
 ]
 
 // Smashgather Data
@@ -219,6 +229,13 @@ const games = [
   { id: "2", createdAt: "...", userId: "0", characterId: "0" },
   { id: "3", createdAt: "...", userId: "1", characterId: "1" },
   { id: "4", createdAt: "...", userId: "2", characterId: "2" },
+]
+const gamesCombined = [
+  { id: "0", createdAt: "...", user: users[1], character: characters[1] },
+  { id: "1", createdAt: "...", user: users[0], character: characters[0] },
+  { id: "2", createdAt: "...", user: users[0], character: characters[0] },
+  { id: "3", createdAt: "...", user: users[1], character: characters[1] },
+  { id: "4", createdAt: "...", user: users[2], character: characters[2] },
 ]
 
 export default class Presentation extends React.Component {
@@ -285,9 +302,22 @@ export default class Presentation extends React.Component {
             <Heading size={ 2 } textColor="primary" fit caps>Speaker App Data Model</Heading>
             <SpeakerDataModel />
           </Slide>
+          <Slide transition={ ["fade"] } bgColor="white" notes={ notes.speakerRest }>
+            <Heading size={ 2 } textColor="primary" caps>/speakers/0</Heading>
+            <Heading size={ 2 } textColor="primary" caps>/speakers/0/companies</Heading>
+            <Heading size={ 2 } textColor="primary" caps>/companies/0</Heading>
+            <Heading size={ 2 } textColor="primary" caps>/companies/1</Heading>
+            <Heading size={ 2 } textColor="primary" caps>/companies/2</Heading>
+            <Heading size={ 2 } textColor="primary" caps>/speakers/0/events</Heading>
+            <Heading size={ 2 } textColor="primary" caps>/events/0</Heading>
+          </Slide>
+          <Slide transition={ ["fade"] } bgColor="white" notes={ notes.speakerActualData }>
+            <Heading size={ 2 } textColor="primary" fit caps>Speaker App Data Model</Heading>
+            <SpeakerCombinedDataModel />
+          </Slide>
           <Slide transition={ ["slide"] } bgImage={ images.smashgatherIntro } bgDarken={0.5} notes={ notes.smashgather }>
             <Heading size={ 1 } fit caps textColor="white">
-              Let's Talk About A SSB64 App
+              Let's Talk About Smashgather
             </Heading>
           </Slide>
           <Slide transition={ ["slide"] } bgColor="primary" notes={ notes.smashgatherList }>
@@ -397,7 +427,7 @@ export default class Presentation extends React.Component {
           </Slide>
           <Slide transition={ ["slide"] } notes={ notes.unlessTheyDo }>
             <Heading size={ 2 } textColor="white" fit caps>...unless they do</Heading>
-            <Heading size={ 2 } textColor="white" fit caps>(via an explict mutation or query)</Heading>
+            <Heading size={ 2 } textColor="white" fit caps>(via an explicit mutation or query)</Heading>
           </Slide>
           <Slide transition={ ["fade"] } bgColor="primary" bgImage={ images.relayWhite } notes={ notes.nodesSummary }>
             <Heading size={ 2 } textColor="white" fit caps>Relay assumes that your nodes:</Heading>
@@ -439,15 +469,6 @@ export default class Presentation extends React.Component {
               />
               <Image src={ images.smashgatherCharacter } height="240px" style={{ position: "absolute", right: "20px", bottom: "20px", borderRadius: "10px" }} />
             </div>
-          </Slide>
-          <Slide transition={ ["fade"] } bgColor="primary" notes={ notes.bonusValidation }>
-            <Heading size={ 2 } textColor="white" fit caps>Bonus: Query Validation!</Heading>
-            <CodePane
-              textSize="20"
-              lang="text"
-              source={ require("raw!../assets/validation.example") }
-              margin="20px auto"
-            />
           </Slide>
           <Slide transition={ ["slide"] } bgColor="white" notes={ notes.declarativeContainersTwo }>
             <Heading size={ 2 } textColor="primary" fit caps>Declarative Containers</Heading>
@@ -740,12 +761,12 @@ class SpeakerDataModel extends React.Component {
           {
             speakers.map((speaker) =>
               <TableRow key={ speaker.id }>
-                <TableHeaderItem>
+                <TableItem>
                   { speaker.id }
                   <div style={point} ref={(el) => this.points["speaker"][speaker.id] = el}></div>
-                </TableHeaderItem>
-                <TableHeaderItem>{ speaker.name }</TableHeaderItem>
-                <TableHeaderItem>...</TableHeaderItem>
+                </TableItem>
+                <TableItem>{ speaker.name }</TableItem>
+                <TableItem>...</TableItem>
               </TableRow>
             )
           }
@@ -760,13 +781,13 @@ class SpeakerDataModel extends React.Component {
           {
             companies.map((company) =>
               <TableRow key={ company.id }>
-                <TableHeaderItem>{ company.id }</TableHeaderItem>
-                <TableHeaderItem>{ company.name }</TableHeaderItem>
-                <TableHeaderItem>...</TableHeaderItem>
-                <TableHeaderItem>
+                <TableItem>{ company.id }</TableItem>
+                <TableItem>{ company.name }</TableItem>
+                <TableItem>...</TableItem>
+                <TableItem>
                   { company.speakerId }
                   <div style={point} ref={(el) => this.points["company"][company.id][company.speakerId] = el}></div>
-                </TableHeaderItem>
+                </TableItem>
               </TableRow>
             )
           }
@@ -783,27 +804,80 @@ class SpeakerDataModel extends React.Component {
           {
             events.map((event) =>
               <TableRow key={ event.id }>
-                <TableHeaderItem>{ event.id }</TableHeaderItem>
-                <TableHeaderItem>{ event.name }</TableHeaderItem>
-                <TableHeaderItem>...</TableHeaderItem>
-                <TableHeaderItem>
+                <TableItem>{ event.id }</TableItem>
+                <TableItem>{ event.name }</TableItem>
+                <TableItem>...</TableItem>
+                <TableItem>
                   { event.first }
                   { event.first ? <div style={point} ref={(el) => this.points["event"][event.id][event.first] = el}></div> : "" }
-                </TableHeaderItem>
-                <TableHeaderItem>
+                </TableItem>
+                <TableItem>
                   { event.second }
                   { event.second ? <div style={point} ref={(el) => this.points["event"][event.id][event.second] = el}></div> : "" }
-                </TableHeaderItem>
-                <TableHeaderItem>
+                </TableItem>
+                <TableItem>
                   { event.third }
                   { event.third ? <div style={point} ref={(el) => this.points["event"][event.id][event.third] = el}></div> : "" }
-                </TableHeaderItem>
+                </TableItem>
               </TableRow>
             )
           }
         </Table>
       </div>
       <Appear><div>{ lines }</div></Appear>
+    </div>
+  }
+}
+
+class SpeakerCombinedDataModel extends React.Component {
+  render() {
+    return <div style={{ position: "relative" }}>
+      <div style={ flexRowWrap }>
+        {
+          speakersCombined.map((combined) =>
+            <div style={ speakerCombined }>
+              <Table>
+                <TableRow>
+                  <TableHeaderItem>name</TableHeaderItem>
+                  <TableHeaderItem>avatar</TableHeaderItem>
+                </TableRow>
+                <TableRow>
+                  <TableItem>{ combined.speaker.name }</TableItem>
+                  <TableItem>...</TableItem>
+                </TableRow>
+              </Table>
+              <Table>
+                <TableRow>
+                  <TableHeaderItem>name</TableHeaderItem>
+                  <TableHeaderItem>image</TableHeaderItem>
+                </TableRow>
+                {
+                  combined.companies.map((company) =>
+                    <TableRow key={ company.id }>
+                      <TableItem>{ company.name }</TableItem>
+                      <TableItem>...</TableItem>
+                    </TableRow>
+                  )
+                }
+              </Table>
+              <Table>
+                <TableRow>
+                  <TableHeaderItem>name</TableHeaderItem>
+                  <TableHeaderItem>image</TableHeaderItem>
+                </TableRow>
+                {
+                  combined.events.map((event) =>
+                    <TableRow key={ event.id }>
+                      <TableItem>{ event.name }</TableItem>
+                      <TableItem>...</TableItem>
+                    </TableRow>
+                  )
+                }
+              </Table>
+            </div>
+          )
+        }
+      </div>
     </div>
   }
 }
@@ -849,16 +923,16 @@ class SmashgatherDataModel extends React.Component {
           {
             users.map((user) =>
               <TableRow key={ user.id }>
-                <TableHeaderItem>
+                <TableItem>
                   { user.id }
                   <div style={point} ref={(el) => this.userPoints["user"][user.id] = el}></div>
-                </TableHeaderItem>
-                <TableHeaderItem>{ user.name }</TableHeaderItem>
-                <TableHeaderItem>...</TableHeaderItem>
-                <TableHeaderItem>
+                </TableItem>
+                <TableItem>{ user.name }</TableItem>
+                <TableItem>...</TableItem>
+                <TableItem>
                   { user.characterId }
                   <div style={point} ref={(el) => this.charPoints["user"][user.id][user.characterId] = el}></div>
-                </TableHeaderItem>
+                </TableItem>
               </TableRow>
             )
           }
@@ -872,12 +946,12 @@ class SmashgatherDataModel extends React.Component {
           {
             characters.map((character) =>
               <TableRow key={ character.id }>
-                <TableHeaderItem>
+                <TableItem>
                   { character.id }
                   <div style={point} ref={(el) => this.charPoints["character"][character.id] = el}></div>
-                </TableHeaderItem>
-                <TableHeaderItem>{ character.name }</TableHeaderItem>
-                <TableHeaderItem>...</TableHeaderItem>
+                </TableItem>
+                <TableItem>{ character.name }</TableItem>
+                <TableItem>...</TableItem>
               </TableRow>
             )
           }
@@ -892,16 +966,16 @@ class SmashgatherDataModel extends React.Component {
           {
             games.map((game) =>
               <TableRow key={ game.id }>
-                <TableHeaderItem>{ game.id }</TableHeaderItem>
-                <TableHeaderItem>...</TableHeaderItem>
-                <TableHeaderItem>
+                <TableItem>{ game.id }</TableItem>
+                <TableItem>...</TableItem>
+                <TableItem>
                   { game.characterId }
                   <div style={point} ref={(el) => this.charPoints["game"][game.id][game.characterId] = el}></div>
-                </TableHeaderItem>
-                <TableHeaderItem>
+                </TableItem>
+                <TableItem>
                   { game.userId }
                   <div style={point} ref={(el) => this.userPoints["game"][game.id][game.userId] = el}></div>
-                </TableHeaderItem>
+                </TableItem>
               </TableRow>
             )
           }
