@@ -45,11 +45,14 @@ const images = {
   neville: require("../assets/neville.png"),
   cory: require("../assets/cory.jpg"),
   miriam: require("../assets/miriam.jpg"),
+  eddie: require("../assets/eddie.jpg"),
+  bonnie: require("../assets/bonnie.jpg"),
   eric: require("../assets/eric.png"),
   jamie: require("../assets/jamie.png"),
   bridgit: require("../assets/bridgit.png"),
   avvasi: require("../assets/avvasi.png"),
   manhattanJS: require("../assets/manhattanjs.png"),
+  nycReact: require("../assets/nyc_react.jpg"),
   smashgatherIntro: require("../assets/smashgather_intro.gif"),
   smashgatherGames: require("../assets/smashgather_games.png"),
   smashgatherUsers: require("../assets/smashgather_users.png"),
@@ -193,21 +196,24 @@ const summaryImage = {
 // "Speaker App" Data
 const speakers = [
   { id: "0", name: "Neville Samuell", avatar: images.neville },
-  { id: "1", name: "Cory Forsyth", avatar: images.cory },
-  { id: "2", name: "Miriam Nadler", avatar: images.miriam },
+  { id: "1", name: "Eddie Zaneski", avatar: images.eddie },
+  { id: "2", name: "Bonnie Eisenman", avatar: images.bonnie },
 ]
 const companies = [
   { id: "0", name: "Pathgather", image: images.pathgather, speakerId: "0" },
   { id: "1", name: "Bridgit", image: images.bridgit, speakerId: "0" },
   { id: "2", name: "Avvasi", image: images.avvasi, speakerId: "0" },
-  { id: "3", name: "201 Created", image: images.avvasi, speakerId: "1" },
-  { id: "4", name: "Vox Product", image: images.avvasi, speakerId: "2" },
+  { id: "3", name: "Twilio", image: images.avvasi, speakerId: "1" },
+  { id: "4", name: "Twitter", image: images.avvasi, speakerId: "2" },
 ]
 const events = [
-  { id: "0", name: "ManhattanJS", image: images.manhattanJS, first: "0", second: "1", third: "2" },
+  { id: "0", name: "NYC React", image: images.nycReact, speakerId: "0" },
+  { id: "1", name: "ManhattanJS", image: images.manhattanJS, speakerId: "0" },
+  { id: "2", name: "NYC React", image: images.nycReact, speakerId: "1" },
+  { id: "3", name: "NYC React", image: images.nycReact, speakerId: "2" },
 ]
 const speakersCombined = [
-  { id: "0", speaker: speakers[0], companies: companies.slice(0, 3), events: events.slice(0, 1) },
+  { id: "0", speaker: speakers[0], companies: companies.slice(0, 3), events: events.slice(0, 2) },
   { id: "1", speaker: speakers[1], companies: companies.slice(3, 4), events: events.slice(0, 1) },
   { id: "2", speaker: speakers[2], companies: companies.slice(4, 5), events: events.slice(0, 1) },
 ]
@@ -797,9 +803,7 @@ class SpeakerDataModel extends React.Component {
             <TableHeaderItem>id</TableHeaderItem>
             <TableHeaderItem>name</TableHeaderItem>
             <TableHeaderItem>image</TableHeaderItem>
-            <TableHeaderItem>first</TableHeaderItem>
-            <TableHeaderItem>second</TableHeaderItem>
-            <TableHeaderItem>third</TableHeaderItem>
+            <TableHeaderItem>speaker_id</TableHeaderItem>
           </TableRow>
           {
             events.map((event) =>
@@ -808,16 +812,8 @@ class SpeakerDataModel extends React.Component {
                 <TableItem>{ event.name }</TableItem>
                 <TableItem>...</TableItem>
                 <TableItem>
-                  { event.first }
-                  { event.first ? <div style={point} ref={(el) => this.points["event"][event.id][event.first] = el}></div> : "" }
-                </TableItem>
-                <TableItem>
-                  { event.second }
-                  { event.second ? <div style={point} ref={(el) => this.points["event"][event.id][event.second] = el}></div> : "" }
-                </TableItem>
-                <TableItem>
-                  { event.third }
-                  { event.third ? <div style={point} ref={(el) => this.points["event"][event.id][event.third] = el}></div> : "" }
+                  { event.speakerId }
+                  { event.speakerId ? <div style={point} ref={(el) => this.points["event"][event.id][event.speakerId] = el}></div> : "" }
                 </TableItem>
               </TableRow>
             )
