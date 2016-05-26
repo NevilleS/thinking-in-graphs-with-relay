@@ -68,6 +68,20 @@ export default {
     * Most people think Relay is a generic framework, but it's not.<br/>
     * It is very opinionated and places specific restrictions on your schema.<br/>
   `,
+  graphql: `
+    * GraphQL is a query language, defined by a spec written by Facebook<br/>
+    * Was developed to allow the client to request exactly the data it needs<br/>
+    * Highly composable and flexible, but also strongly typed to ensure correctness<br/>
+    * But it's not a database - just a way to ask for data, not store it<br/>
+    * Can be used independent of Relay, very flexible<br/>
+  `,
+  graphqlExample: `
+    * TODO <br/>
+  `,
+  graphqlDemo: `
+    * Let's take a moment to play around with some GraphQL queries<br/>
+    * You can login to play around with the Smashgather schema<br/>
+  `,
   backToRelay: `
     * Let's get back to it.<br/>
   `,

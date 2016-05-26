@@ -1,0 +1,12 @@
+// GraphQL response
+{
+  "data": {
+    "node": {
+      "name": "Neville",
+      "wins": 41,
+      "character": {
+        "name": "Ness"
+      }
+    }
+  }
+}

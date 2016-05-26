@@ -1,0 +1,12 @@
+// GraphQL request
+query {
+  node(id:"VXNlcjox") {
+    ...on User {
+      name
+      wins
+      character {
+        name
+      }
+    }
+  }
+}

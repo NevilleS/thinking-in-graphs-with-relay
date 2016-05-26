@@ -67,6 +67,7 @@ const images = {
   relaySmall: require("../assets/relay.png"),
   relayGraphql: require("../assets/relay_graphql.png"),
   graphql: require("../assets/graphql.png"),
+  graphqlWhite: require("../assets/graphql_white.svg"),
   twitter: require("../assets/twitter.png"),
   github: require("../assets/github.png"),
   reactiflux: require("../assets/reactiflux.png"),
@@ -255,7 +256,7 @@ export default class Presentation extends React.Component {
             </Heading>
             <Heading size={ 5 } caps>
               Neville Samuell<br/>
-              Lead Engineer @
+              CTO @
               <Image src={ images.pathgatherWhite } height="1.4em" margin="0 0 -0.5em 0.2em" />
             </Heading>
           </Slide>
@@ -365,6 +366,36 @@ export default class Presentation extends React.Component {
                 <Text textColor="white">GraphQL Server</Text>
               </div>
             </div>
+          </Slide>
+          <Slide transition={ ["slide"] } bgColor="#E535AB" bgImage={ images.graphqlWhite } notes={ notes.graphql }>
+            <Heading size={ 2 } textColor="white" caps>GraphQL</Heading>
+            <List textColor="white">
+              <ListItem textSize="60">a data query language</ListItem>
+              <ListItem textSize="60">highly composable, strongly typed</ListItem>
+              <ListItem textSize="60">not a database!</ListItem>
+              <ListItem textSize="60">independent of Relay</ListItem>
+            </List>
+          </Slide>
+          <Slide transition={ ["slide"] } bgColor="#E535AB" bgImage={ images.graphqlWhite } notes={ notes.graphqlExample }>
+            <Heading size={ 2 } textColor="white" caps>Example Query</Heading>
+            <div style={ Object.assign({}, flexRow, { marginTop: "20px" }) }>
+              <CodePane
+                textSize="24"
+                lang="jsx"
+                source={ require("raw!../assets/graphqlExample_request.example") }
+                style={{ minWidth: "53%" }}
+              />
+              <CodePane
+                textSize="24"
+                lang="jsx"
+                source={ require("raw!../assets/graphqlExample_response.example") }
+                style={{ minWidth: "47%" }}
+              />
+            </div>
+          </Slide>
+          <Slide transition={ ["slide"] } bgColor="#E535AB" bgImage={ images.graphqlWhite } notes={ notes.graphqlDemo }>
+            <Heading size={ 2 } textColor="white" fit caps>GraphQL Demo</Heading>
+            <Heading size={ 2 } textColor="white" fit caps>smashgather.com/graphql</Heading>
           </Slide>
           <Slide transition={ ["fade"] } bgColor="white" bgImage={ images.relay } notes={ notes.backToRelay }>
           </Slide>
