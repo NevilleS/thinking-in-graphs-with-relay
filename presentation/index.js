@@ -397,6 +397,11 @@ export default class Presentation extends React.Component {
             <Heading size={ 2 } textColor="white" fit caps>GraphQL Demo</Heading>
             <Heading size={ 2 } textColor="white" fit caps>smashgather.com/graphql</Heading>
           </Slide>
+          <Slide transition={ ["slide"] } bgColor="#E535AB" bgImage={ images.graphqlWhite } notes={ notes.graphqlDemo }>
+            <iframe width="1000" height="600" src="http://www.smashgather.com/graphql?query=query%20%7B%0A%20%20node(id%3A%20%22VXNlcjox%22)%20%7B%0A%20%20%20%20...%20on%20User%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20wins%0A%20%20%20%20%20%20character%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D">
+            </iframe>
+            <Link href="http://www.smashgather.com/graphql?query=query%20%7B%0A%20%20node(id%3A%20%22VXNlcjox%22)%20%7B%0A%20%20%20%20...%20on%20User%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20wins%0A%20%20%20%20%20%20character%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D">smashgather.com/graphql</Link>
+          </Slide>
           <Slide transition={ ["fade"] } bgColor="white" bgImage={ images.relay } notes={ notes.backToRelay }>
           </Slide>
           <Slide transition={ ["fade"] } bgImage={ images.relayWhite } notes={ notes.relayAssumes }>
