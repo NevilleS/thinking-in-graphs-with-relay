@@ -71,6 +71,7 @@ const images = {
   twitter: require("../assets/twitter.png"),
   github: require("../assets/github.png"),
   reactiflux: require("../assets/reactiflux.png"),
+  beginnersGuide: require("../assets/beginners_guide.png"),
 };
 
 preloader(images);
@@ -402,6 +403,24 @@ export default class Presentation extends React.Component {
             </iframe>
             <Link href="http://www.smashgather.com/graphql?query=query%20%7B%0A%20%20node(id%3A%20%22VXNlcjox%22)%20%7B%0A%20%20%20%20...%20on%20User%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20wins%0A%20%20%20%20%20%20character%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D">smashgather.com/graphql</Link>
           </Slide>
+          <Slide transition={ ["slide"] } bgColor="black" notes={ notes.asideTwo }>
+            <Heading size={ 2 } textColor="white" caps>(Aside)</Heading>
+            <Heading size={ 2 } textColor="white" caps>You'll need:</Heading>
+            <div style={ Object.assign({}, flexRow, { justifyContent: "center" }) }>
+              <div>
+                <Image height="300" src={ images.react } />
+                <Text textColor="white">React App</Text>
+              </div>
+              <div style={{ position: "relative" }}>
+                <Image height="300" src={ images.relaySmall } />
+                <Text textColor="white" fit>"Relay-compliant" schema</Text>
+              </div>
+              <div>
+                <Image height="300" src={ images.graphql } />
+                <Text textColor="white">GraphQL Server</Text>
+              </div>
+            </div>
+          </Slide>
           <Slide transition={ ["fade"] } bgColor="white" bgImage={ images.relay } notes={ notes.backToRelay }>
           </Slide>
           <Slide transition={ ["fade"] } bgImage={ images.relayWhite } notes={ notes.relayAssumes }>
@@ -648,6 +667,11 @@ export default class Presentation extends React.Component {
               source={ require("raw!../assets/mutation_declaration.example") }
               margin="0 auto"
             />
+          </Slide>
+          <Slide transition={ ["fade"] } bgColor="primary" notes={ notes.mutationsMore }>
+            <Heading size={ 2 } textColor="white" fit caps>More on mutations</Heading>
+            <Heading size={ 2 } textColor="white" fit caps>Optimal refetching, optimistic updates, etc.</Heading>
+            <Image style={{ maxWidth: "100%", borderRadius: "5px" }} src={ images.beginnersGuide } />
           </Slide>
           <Slide transition={ ["fade"] } bgImage={ images.relayWhite } bgColor="primary" notes={ notes.summary }>
             <Heading size={ 1 } textColor="white" caps>Thinking In Graphs With Relay</Heading>

@@ -64,9 +64,9 @@ export default {
   aside: `
     * Before we go further, need to set some expectations.<br/>
     * Relay is a framework for getting data from GraphQL server to your React components.<br/>
+    * React is a library for building user interfaces - it has no real opinions about data<br/>
     * GraphQL itself is just a query language, so you'll need some kind of database.<br/>
-    * Most people think Relay is a generic framework, but it's not.<br/>
-    * It is very opinionated and places specific restrictions on your schema.<br/>
+    * For this talk, I'm going to focus on Relay, but let's take a quick detour to GraphQL<br/>
   `,
   graphql: `
     * GraphQL is a query language, defined by a spec written by Facebook<br/>
@@ -76,11 +76,19 @@ export default {
     * Can be used independent of Relay, very flexible<br/>
   `,
   graphqlExample: `
-    * TODO <br/>
+    * In this example, we're sending a query to get a particular User<br/>
+    * Note that the query is just a string, sent along as part of a POST<br/>
+    * We've requested some fields from the User type, like name, etc.</br>
+    * You'll notice that the shape of the response data matches the shape of the query<br/>
   `,
   graphqlDemo: `
     * Let's take a moment to play around with some GraphQL queries<br/>
     * You can login to play around with the Smashgather schema<br/>
+  `,
+  asideTwo: `
+    * Now we can focus on the part in the middle, Relay<br/>
+    * Most people think Relay is a generic framework, but it's not.<br/>
+    * It is very opinionated and places specific restrictions on your schema.<br/>
   `,
   backToRelay: `
     * Let's get back to it.<br/>
@@ -200,6 +208,10 @@ export default {
     * Mutations encapsulate all the behaviour of an operation into an object you dispatch.<br/>
     * Relay handles forming query to refetch changed data and updating views.<br/>
     * Lots of optimizations here like cancelation and optimistic updates.<br/>
+  `,
+  mutationsMore: `
+    * MUTATIONS need their own talk - automatically refresh data, optimistic updates, etc.<br/>
+    * Once you use Relay a bit, check out Pathgather blog for a detailed overview
   `,
   summary: `
     * To use Relay effectively, you need to think about things differently.<br/>
