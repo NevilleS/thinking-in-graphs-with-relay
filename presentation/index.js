@@ -320,7 +320,7 @@ export default class Presentation extends React.Component {
             <Heading size={ 2 } textColor="primary" caps>/events/0</Heading>
           </Slide>
           <Slide transition={ ["fade"] } bgColor="white" notes={ notes.speakerActualData }>
-            <Heading size={ 2 } textColor="primary" fit caps>Speaker App Data Model</Heading>
+            <Heading size={ 2 } textColor="primary" fit caps>(Actual) Speaker App Data Model</Heading>
             <SpeakerCombinedDataModel />
           </Slide>
           <Slide transition={ ["slide"] } bgImage={ images.smashgatherIntro } bgDarken={0.5} notes={ notes.smashgather }>

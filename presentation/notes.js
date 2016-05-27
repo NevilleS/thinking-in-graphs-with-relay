@@ -2,7 +2,7 @@ export default {
   title: `
     * Today we're going to talk about Relay.<br/>
     * By now you've all heard of it, all the hype at React Conf 2015 & 2016...<br/>
-    * We're using it, so I want to look past the hype and talk about the problems it solves.<br/>
+    * We're using it, so I want to look past the hype and talk what it is, what problems it solves, and how you have to think differently<br/>
     * First, we need to talk about some examples of apps that don't use Relay.<br/>
   `,
   speaker: `
@@ -10,7 +10,7 @@ export default {
     * Let's talk about a theoretical app that lists recent speakers at tech events.<br/>
   `,
   speakerList: `
-    * Tonight, we've got a great lineup: me, Cory, and Miriam<br/>
+    * Over the last three months at this meetup, we've had talks from myself, Eddie, and Bonnie<br/>
   `,
   speakerDetail: `
     * For each speaker, probably see a details view.<br/>
@@ -30,7 +30,7 @@ export default {
   `,
   speakerActualData: `
     * Realistically, we'd do all the joining on the backend, and provide a model like this.<br/>
-    * Nothing fancy, but it'd pay the bills.<br/>
+    * Nothing fancy, couple issues like duplicate data, view logic tied up in the server, but it'd pay the bills.<br/>
     * Now let's talk about a real app.<br/>
   `,
   smashgather: `
@@ -69,7 +69,7 @@ export default {
     * For this talk, I'm going to focus on Relay, but let's take a quick detour to GraphQL<br/>
   `,
   graphql: `
-    * GraphQL is a query language, defined by a spec written by Facebook<br/>
+    * GraphQL is a query language, defined by a spec written by Facebook (Nick spoke at this meetup last year)<br/>
     * Was developed to allow the client to request exactly the data it needs<br/>
     * Highly composable and flexible, but also strongly typed to ensure correctness<br/>
     * But it's not a database - just a way to ask for data, not store it<br/>
