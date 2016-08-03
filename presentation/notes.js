@@ -160,6 +160,11 @@ export default {
   declarativeContainersTwo: `
     * Once Relay gets the data, it gives exactly the data to the inner component as props.<br/>
   `,
+  reusableContainers: `
+    * In theory, you could reuse your Relay containers between web & native - it's just a HOC<br/>
+    * However, I think this is misguided, since you should customize the data requirements for each platform<br/>
+    * That's a huge benefit of GraphQL itself: the same schema, but different fragments per platform!<br/>
+  `,
   composableContainers: `
     * Like how React components compose, Relay containers compose in parallel.<br/>
     * Parent container includes child container's fragment in it's own.<br/>

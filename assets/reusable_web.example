@@ -1,0 +1,11 @@
+// WEB
+Relay.createContainer(___, {
+  fragments: {
+    character: () => Relay.QL`
+      fragment on Character {
+        name
+        wins
+      }
+    `,
+  },
+})

@@ -47,12 +47,15 @@ const images = {
   miriam: require("../assets/miriam.jpg"),
   eddie: require("../assets/eddie.jpg"),
   bonnie: require("../assets/bonnie.jpg"),
+  bruno: require("../assets/bruno.jpg"),
+  jesse: require("../assets/jesse.jpg"),
   eric: require("../assets/eric.png"),
   jamie: require("../assets/jamie.png"),
   bridgit: require("../assets/bridgit.png"),
   avvasi: require("../assets/avvasi.png"),
   manhattanJS: require("../assets/manhattanjs.png"),
   nycReact: require("../assets/nyc_react.jpg"),
+  reactNativeNyc: require("../assets/react_native_nyc.png"),
   smashgatherIntro: require("../assets/smashgather_intro.gif"),
   smashgatherGames: require("../assets/smashgather_games.png"),
   smashgatherUsers: require("../assets/smashgather_users.png"),
@@ -198,24 +201,25 @@ const summaryImage = {
 // "Speaker App" Data
 const speakers = [
   { id: "0", name: "Neville Samuell", avatar: images.neville },
-  { id: "1", name: "Eddie Zaneski", avatar: images.eddie },
-  { id: "2", name: "Bonnie Eisenman", avatar: images.bonnie },
+  { id: "1", name: "Bruno Barbieri", avatar: images.bruno },
+  { id: "2", name: "Jesse Sessler", avatar: images.jesse },
 ]
 const companies = [
   { id: "0", name: "Pathgather", image: images.pathgather, speakerId: "0" },
   { id: "1", name: "Bridgit", image: images.bridgit, speakerId: "0" },
   { id: "2", name: "Avvasi", image: images.avvasi, speakerId: "0" },
-  { id: "3", name: "Twilio", image: images.avvasi, speakerId: "1" },
-  { id: "4", name: "Twitter", image: images.avvasi, speakerId: "2" },
+  { id: "3", name: "Delivery.com", image: images.delivery, speakerId: "1" },
+  { id: "4", name: "Delivery.com", image: images.delivery, speakerId: "2" },
 ]
 const events = [
-  { id: "0", name: "NYC React", image: images.nycReact, speakerId: "0" },
-  { id: "1", name: "ManhattanJS", image: images.manhattanJS, speakerId: "0" },
-  { id: "2", name: "NYC React", image: images.nycReact, speakerId: "1" },
-  { id: "3", name: "NYC React", image: images.nycReact, speakerId: "2" },
+  { id: "0", name: "React Native NYC", image: images.reactNativeNyc, speakerId: "0" },
+  { id: "1", name: "NYC React", image: images.nycReact, speakerId: "0" },
+  { id: "2", name: "ManhattanJS", image: images.manhattanJS, speakerId: "0" },
+  { id: "2", name: "React Native NYC", image: images.reactNativeNyc, speakerId: "1" },
+  { id: "3", name: "React Native NYC", image: images.reactNativeNyc, speakerId: "2" },
 ]
 const speakersCombined = [
-  { id: "0", speaker: speakers[0], companies: companies.slice(0, 3), events: events.slice(0, 2) },
+  { id: "0", speaker: speakers[0], companies: companies.slice(0, 3), events: events.slice(0, 3) },
   { id: "1", speaker: speakers[1], companies: companies.slice(3, 4), events: events.slice(0, 1) },
   { id: "2", speaker: speakers[2], companies: companies.slice(4, 5), events: events.slice(0, 1) },
 ]
@@ -298,7 +302,7 @@ export default class Presentation extends React.Component {
                 <div style={ detailsColumn }>
                   <Text margin="0 0 0.5em 0" textColor="gray">Events</Text>
                   {
-                    events.slice(0,2).map((event) =>
+                    events.slice(0,3).map((event) =>
                       <Image key={ event.id } style={ detailsImage } src={ event.image } />
                     )
                   }
@@ -542,6 +546,27 @@ export default class Presentation extends React.Component {
               />
               <Image src={ images.smashgatherCharacter } height="240px" style={{ position: "absolute", right: "20px", bottom: "20px", borderRadius: "10px" }} />
             </div>
+          </Slide>
+          <Slide transition={ ["slide"] } bgColor="white" notes={ notes.reusableContainers }>
+            <Heading size={ 2 } textColor="primary" fit caps>Reusable Containers?</Heading>
+            <div style={ Object.assign({}, flexRow, { marginTop: "20px", background: "#2d2d2d" }) }>
+              <CodePane
+                textSize="24"
+                lang="jsx"
+                source={ require("raw!../assets/reusable_web.example") }
+                style={{ minWidth: "50%" }}
+              />
+              <Appear style={{ minWidth: "50%" }}>
+                <CodePane
+                  textSize="24"
+                  lang="jsx"
+                  source={ require("raw!../assets/reusable_native.example") }
+                />
+              </Appear>
+            </div>
+            <Appear>
+              <Heading size={ 2 } textColor="primary" fit caps>(learn once, write anywhere)</Heading>
+            </Appear>
           </Slide>
           <Slide transition={ ["slide"] } bgColor="white" notes={ notes.composableContainers }>
             <Heading size={ 2 } textColor="primary" fit caps>Composable Containers</Heading>

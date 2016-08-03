@@ -1,0 +1,11 @@
+// MOBILE
+Relay.createContainer(___, {
+  fragments: {
+    character: () => Relay.QL`
+      fragment on Character {
+        name
+      }
+    `,
+  },
+})
+// NOTE: No room to show wins!
